@@ -10,8 +10,8 @@ int main1() {
     int studentCount = 0;
     int facultyCount = 0;
     int choice;
-    const char *admin_username = "admin123";
-    const char *admin_password = "123admin";
+    const char *admin_username = "pallavi123";
+    const char *admin_password = "123pallavi";
 
     char ad_username[20];
     char ad_password[20];
@@ -23,6 +23,7 @@ int main1() {
     scanf("%s", ad_password);
 
     if (strcmp(ad_username, admin_username) == 0 && strcmp(ad_password, admin_password) == 0) {
+
         printf("Login successful\n");
 
         while (1) {
@@ -239,6 +240,7 @@ int main1() {
         }
     } else {
         printf("Invalid Admin ID or Password. Try again!\n");
+        return 1;
     }
     return 0;
 }
