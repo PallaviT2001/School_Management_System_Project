@@ -17,7 +17,7 @@ void sortFacultiesByID();
 void sortFacultiesByName();
 
 extern struct Faculty *faculties;
-extern int FacultyCount;
+extern int facultyCount;
 
 #endif
 

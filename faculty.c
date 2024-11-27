@@ -4,7 +4,7 @@
 #include "faculty.h"
 
 struct Faculty *faculties = NULL;
-int facultyCount = 0;
+int facultyCount=0;
 
 void insertFaculty(int id, const char *name, const char *department,int age, const char *qualification) {
     faculties = realloc(faculties, (facultyCount + 1) * sizeof(struct Faculty));

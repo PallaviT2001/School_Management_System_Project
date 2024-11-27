@@ -5,7 +5,7 @@
 struct Section {
     struct Student *studentDetails;
     int section_id;
-    char section_name[20];
+    const char *section_name[20];
 };
 
 void insertSection(int studentID, int section_id, const char *section_name);

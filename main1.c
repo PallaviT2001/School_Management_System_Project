@@ -1,3 +1,4 @@
+#include "fileoperation.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,11 +8,9 @@
 #include "section.h"
 
 int main1() {
-    int studentCount = 0;
-    int facultyCount = 0;
     int choice;
-    const char *admin_username = "pallavi123";
-    const char *admin_password = "123pallavi";
+    const char *admin_username = "admin123";
+    const char *admin_password = "123admin";
 
     char ad_username[20];
     char ad_password[20];
@@ -25,6 +24,10 @@ int main1() {
     if (strcmp(ad_username, admin_username) == 0 && strcmp(ad_password, admin_password) == 0) {
 
         printf("Login successful\n");
+        loadStudentsFromFile("students.dat");
+        loadFacultyData("faculty_data.bin");
+        loadFeesFromFile("fees_records.dat");
+        loadSectionsFromFile("section_records.dat");
 
         while (1) {
             printf("\n--- select operation---\n");
@@ -47,7 +50,7 @@ int main1() {
                 printf("5. Sort and Display Students by ID\n");
                 printf("6. Sort and Display Students by Name\n");
                 printf("7. Total Student Count\n");
-                printf("8. Exit\n");
+                printf("8. save data and Exit\n");
                 printf("Enter your choice: ");
                 scanf("%d", &studentChoice);
 
@@ -62,7 +65,6 @@ int main1() {
                     printf("Enter student age: ");
                     scanf("%d", &age);
                     insertStudent(id, name, age);
-                    studentCount++;
                     break;
                 }
                 case 2: {
@@ -70,7 +72,6 @@ int main1() {
                     printf("Enter student ID to delete: ");
                     scanf("%d", &id);
                     deleteStudent(id);
-                    studentCount--;
                     break;
                 }
                 case 3: {
@@ -93,6 +94,9 @@ int main1() {
                     printf("Total student count: %d\n", studentCount);
                     break;
                 case 8:
+                    saveStudentsToFile("students.dat");
+                    printf("Data saved successfully. Exiting...\n");
+                    free(students);
                     exit(0);
                 default:
                     printf("Invalid choice!\n");
@@ -110,7 +114,7 @@ int main1() {
                 printf("5. Sort and Display Faculties by ID\n");
                 printf("6. Sort and Display Faculties by Name\n");
                 printf("7. Total Faculty Count\n");
-                printf("8. Exit\n");
+                printf("8. save to file and exit\n");
                 printf("Enter your choice: ");
                 scanf("%d", &facultyChoice);
 
@@ -129,7 +133,6 @@ int main1() {
                     printf("Enter faculty qualification: ");
                     scanf(" %[^\n]", qualification);
                     insertFaculty(id, name, department, age, qualification);
-                    facultyCount++;
                     break;
                 }
                 case 2: {
@@ -137,7 +140,6 @@ int main1() {
                     printf("Enter faculty ID to delete: ");
                     scanf("%d", &id);
                     deleteFaculty(id);
-                    facultyCount--;
                     break;
                 }
                 case 3: {
@@ -160,6 +162,8 @@ int main1() {
                     printf("Total faculty count: %d\n", facultyCount);
                     break;
                 case 8:
+                    saveFacultyData("faculty_data.bin");
+                    printf("Exiting program. Data saved.\n");
                     exit(0);
                 default:
                     printf("Invalid choice!\n");
@@ -172,7 +176,7 @@ int main1() {
                 printf("\n--- Fees Operations ---\n");
                 printf("1. Insert Fees Record\n");
                 printf("2. Display Fees Records\n");
-                printf("3. Exit\n");
+                printf("3. Save data to file and Exit\n");
                 printf("Enter your choice: ");
                 scanf("%d", &feesChoice);
 
@@ -193,6 +197,8 @@ int main1() {
                     displayFeesDetails();
                     break;
                 case 3:
+                    saveFeesToFile("fees_records.dat");
+                    printf("Exiting program. Data saved.\n");
                     exit(0);
                 default:
                     printf("Invalid choice!\n");
@@ -205,7 +211,7 @@ int main1() {
                 printf("\n--- Section Operations ---\n");
                 printf("1. Insert Section\n");
                 printf("2. Display Sections\n");
-                printf("3. Exit\n");
+                printf("3. Save dats to file and Exit\n");
                 printf("Enter your choice: ");
                 scanf("%d", &sectionChoice);
 
@@ -226,6 +232,8 @@ int main1() {
                     displaySectionDetails();
                     break;
                 case 3:
+                    saveSectionsToFile("section_records.dat");
+                    printf("Exiting program. Data saved.\n");
                     exit(0);
                 default:
                     printf("Invalid choice!\n");

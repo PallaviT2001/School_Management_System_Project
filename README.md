@@ -1,2 +1,0 @@
-# School_Management_System_Project
-# School_Management_System_Project

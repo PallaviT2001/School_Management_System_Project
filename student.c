@@ -4,8 +4,7 @@
 #include "student.h"
 
 struct Student *students = NULL;
-int studentCount = 0;
-int id;
+int studentCount=0;
 
 void insertStudent(int id, const char *name, int age) {
     students = realloc(students, (studentCount + 1) * sizeof(struct Student));
@@ -50,12 +49,16 @@ void updateStudent(int id) {
 }
 
 void displayStudentDetails() {
-    printf("\n--- Student Details ---\n");
+    if (studentCount == 0) {
+        printf("No students found!\n");
+        return;
+    }
+
+    printf("\nStudent Details:\n");
     for (int i = 0; i < studentCount; i++) {
         printf("ID: %d, Name: %s, Age: %d\n", students[i].id, students[i].name, students[i].age);
     }
 }
-
 void sortStudentsByID() {
     for (int i = 0; i < studentCount - 1; i++) {
         for (int j = i + 1; j < studentCount; j++) {
